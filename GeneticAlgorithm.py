@@ -65,10 +65,12 @@ class MyForm(wx.Panel):
 
 
         okBtn = wx.Button(self, wx.ID_ANY, 'OK')
-        cancelBtn = wx.Button(self, wx.ID_ANY, 'Cancel')
+        cancelBtn = wx.Button(self, wx.ID_ANY, 'Cancel')    
+        OpenFile = wx.Button(self, wx.ID_ANY, 'Open File')
 
         self.Bind(wx.EVT_BUTTON, self.onOK, okBtn)
-        self.Bind(wx.EVT_BUTTON, self.onCancel, cancelBtn)
+        self.Bind(wx.EVT_BUTTON, self.onCancel, cancelBtn)     
+        self.Bind(wx.EVT_BUTTON, self.onCancel, OpenFile)
 
         
         mainSizer = wx.BoxSizer(wx.VERTICAL)
@@ -106,8 +108,10 @@ class MyForm(wx.Panel):
         inputThreeSizer.Add(self.MaxGeneration, 1, wx.ALL|wx.EXPAND, 5)
 
         inputFourSizer.Add(labelFileName, 0, wx.ALL, 5)
-        inputFourSizer.Add(self.FileName, 1, wx.ALL|wx.EXPAND, 5)
+        inputFourSizer.Add(OpenFile, 1, wx.ALL|wx.EXPAND, 5)
 
+
+     
 
         submitBtnSizer.Add(okBtn, 0, wx.ALL, 5)
         submitBtnSizer.Add(cancelBtn, 0, wx.ALL, 5)
@@ -125,6 +129,21 @@ class MyForm(wx.Panel):
         mainSizer.Fit(self)
         self.Layout()
 
+
+
+
+    def OpenFile (self,event):
+        self.openFile
+        
+    def openFile():
+           # Create open file dialog
+        openFileDialog = wx.FileDialog(frame, "Open", "", "", 
+             "Text files (*.txt)|*.txt", 
+             wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+
+        openFileDialog.ShowModal()
+        print(openFileDialog.GetPath())
+        openFileDialog.Destroy()
 
 
     def onCancel(self, event):
@@ -145,7 +164,7 @@ class MyForm(wx.Panel):
         data.append(self.ChoicesNum.GetValue())
         data.append(self.MaxFitness.GetValue())
         data.append(self.MaxGeneration.GetValue())
-        data.append(self.FileName.GetValue())
+       # data.append(self.FileName.GetValue())
 
 
         
@@ -158,7 +177,7 @@ class MyForm(wx.Panel):
         data = self.getData()
         self.GetParent().Close()
 
-        
+
 
         
        
