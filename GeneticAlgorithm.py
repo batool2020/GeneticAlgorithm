@@ -42,41 +42,54 @@ class MyForm(wx.Panel):
 
        
         
-        labelFileName = wx.StaticText(self, wx.ID_ANY, 'You Can Upload a file!')
-        self.FileName = wx.TextCtrl(self, wx.ID_ANY, value=' ')
+        #self.FileName = wx.TextCtrl(self, wx.ID_ANY, value=' ')
 
         labelProjectsNum = wx.StaticText(self, wx.ID_ANY, 'Projects Number')
         self.ProjectsNum = wx.SpinCtrl(self, wx.ID_ANY, value=' ')
 
+
         labelGroupsNum = wx.StaticText(self, wx.ID_ANY, 'Number of Gropus ')
         self.GroupsNum = wx.SpinCtrl(self, wx.ID_ANY, value=' ')
-
-        
-        labelChoicesNum = wx.StaticText(self, wx.ID_ANY, 'Number of choices for each Group ')
-        self.ChoicesNum = wx.SpinCtrl(self, wx.ID_ANY, value=' ')
+       
+        labelInitialPop = wx.StaticText(self, wx.ID_ANY, '# of Initial Population')
+        self.InitialPop = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=50)
+           
+        labelnumOfCrossedallels = wx.StaticText(self, wx.ID_ANY, 'Number of Crossed Alleles ')
+        self.numOfCrossedallels = wx.SpinCtrl(self, wx.ID_ANY, value=' ')
         
         labelMaxFitness = wx.StaticText(self, wx.ID_ANY, 'Maximum Fitness')
-        self.MaxFitness = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=100)
+        self.MaxFitness = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=200)
+
+        labelMaxGeneration = wx.StaticText(self, wx.ID_ANY, 'Maximum Generation')
+        self.MaxGeneration = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=1000)
 
         
-        labelMaxGeneration = wx.StaticText(self, wx.ID_ANY, 'Maximum Generation')
-        self.MaxGeneration = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=100)
+        labelMutationProb = wx.StaticText(self, wx.ID_ANY, 'Mutation Probability')
+        self.MutationProb = wx.SpinCtrlDouble(self, wx.ID_ANY, value="0", min=0, max=10)
+ 
+        labelMutationNum = wx.StaticText(self, wx.ID_ANY, 'Number of Mutations')
+        self.MutationNum = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=50)
         
+        
+        labelFileName = wx.TextCtrl(self, wx.ID_ANY, 'Open Text File')
 
 
         okBtn = wx.Button(self, wx.ID_ANY, 'OK')
         cancelBtn = wx.Button(self, wx.ID_ANY, 'Cancel')    
-        OpenFile = wx.Button(self, wx.ID_ANY, 'Open File')
+        btn = wx.Button(self, wx.ID_ANY, 'Open File')
+
+
+     
 
         self.Bind(wx.EVT_BUTTON, self.onOK, okBtn)
         self.Bind(wx.EVT_BUTTON, self.onCancel, cancelBtn)     
-        self.Bind(wx.EVT_BUTTON, self.onCancel, OpenFile)
+        self.Bind(wx.EVT_BUTTON, self.onCancel, btn)
 
         
         mainSizer = wx.BoxSizer(wx.VERTICAL)
         titleSizer = wx.BoxSizer(wx.HORIZONTAL)
         inputOneSizer = wx.BoxSizer(wx.HORIZONTAL)
-        #inputTwoSizer = wx.BoxSizer(wx.HORIZONTAL)
+        inputTwoSizer = wx.BoxSizer(wx.HORIZONTAL)
         inputThreeSizer = wx.BoxSizer(wx.HORIZONTAL)
         inputFourSizer = wx.BoxSizer(wx.HORIZONTAL)
         submitBtnSizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -85,9 +98,10 @@ class MyForm(wx.Panel):
         titleSizer = wx.BoxSizer(wx.HORIZONTAL)
         ProjectsNum = wx.BoxSizer(wx.HORIZONTAL)
         GroupsNum = wx.BoxSizer(wx.HORIZONTAL)
-        ChoicesNum = wx.BoxSizer(wx.HORIZONTAL)
+        numOfCrossedallels = wx.BoxSizer(wx.HORIZONTAL)
         MaxFitness = wx.BoxSizer(wx.HORIZONTAL)
         MaxGeneration = wx.BoxSizer(wx.HORIZONTAL)
+        InitialPop = wx.BoxSizer(wx.HORIZONTAL)
 
         titleSizer.Add(title, 0, wx.ALL, 5)
 
@@ -98,20 +112,30 @@ class MyForm(wx.Panel):
         inputOneSizer.Add(labelGroupsNum, 0, wx.ALL, 5)
         inputOneSizer.Add(self.GroupsNum, 1, wx.ALL|wx.EXPAND, 5)
 
-        inputThreeSizer.Add(labelChoicesNum, 0, wx.ALL, 5)
-        inputThreeSizer.Add(self.ChoicesNum, 1, wx.ALL|wx.EXPAND, 5)
+        inputOneSizer.Add(labelInitialPop, 0, wx.ALL, 5)
+        inputOneSizer.Add(self.InitialPop, 1, wx.ALL|wx.EXPAND, 5)
 
-        inputThreeSizer.Add(labelMaxFitness, 0, wx.ALL, 5)
-        inputThreeSizer.Add(self.MaxFitness, 1, wx.ALL|wx.EXPAND, 5)
+        
+        inputTwoSizer.Add(labelMaxFitness, 0, wx.ALL, 5)
+        inputTwoSizer.Add(self.MaxFitness, 1, wx.ALL|wx.EXPAND, 5)
 
-        inputThreeSizer.Add(labelMaxGeneration, 0, wx.ALL, 5)
-        inputThreeSizer.Add(self.MaxGeneration, 1, wx.ALL|wx.EXPAND, 5)
+        
+        inputTwoSizer.Add(labelnumOfCrossedallels, 0, wx.ALL, 5)
+        inputTwoSizer.Add(self.numOfCrossedallels, 1, wx.ALL|wx.EXPAND, 5)
+
+        inputTwoSizer.Add(labelMaxGeneration, 0, wx.ALL, 5)
+        inputTwoSizer.Add(self.MaxGeneration, 1, wx.ALL|wx.EXPAND, 5)
+
+        inputThreeSizer.Add(labelMutationProb, 0, wx.ALL, 5)
+        inputThreeSizer.Add(self.MutationProb, 1, wx.ALL|wx.EXPAND, 5)
+
+        
+        inputThreeSizer.Add(labelMutationNum, 0, wx.ALL, 5)
+        inputThreeSizer.Add(self.MutationNum, 1, wx.ALL|wx.EXPAND, 5)
 
         inputFourSizer.Add(labelFileName, 0, wx.ALL, 5)
-        inputFourSizer.Add(OpenFile, 1, wx.ALL|wx.EXPAND, 5)
+        inputFourSizer.Add(btn, 1, wx.ALL|wx.EXPAND, 5)
 
-
-     
 
         submitBtnSizer.Add(okBtn, 0, wx.ALL, 5)
         submitBtnSizer.Add(cancelBtn, 0, wx.ALL, 5)
@@ -119,7 +143,7 @@ class MyForm(wx.Panel):
         mainSizer.Add(titleSizer, 0, wx.CENTER)
         mainSizer.Add(wx.StaticLine(self,), 0, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(inputOneSizer, 0, wx.ALL|wx.EXPAND, 5)
-        # mainSizer.Add(inputTwoSizer, 0, wx.ALL|wx.EXPAND, 5)
+        mainSizer.Add(inputTwoSizer, 0, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(inputThreeSizer, 0, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(inputFourSizer, 0, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(wx.StaticLine(self), 0, wx.ALL|wx.EXPAND, 5)
@@ -130,6 +154,21 @@ class MyForm(wx.Panel):
         self.Layout()
 
 
+
+    def onOpen(self, event):
+            wildcard = "TXT files (*.txt)|*.txt"
+            dialog = wx.FileDialog(self, "Open Text Files", wildcard=wildcard,
+                                 style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+
+            if dialog.ShowModal() == wx.ID_CANCEL:
+                return
+
+            path = dialog.GetPath()
+
+            if os.path.exists(path):
+                with open(path) as fobj:
+                    for line in fobj:
+                        self.labelFileName.WriteText(line)
 
 
     def OpenFile (self,event):
@@ -159,11 +198,14 @@ class MyForm(wx.Panel):
         this here will procure data from all buttons
         '''
  
-        data.append(self.ProjectsNum.GetValue())
-        data.append(self.GroupsNum.GetValue())
-        data.append(self.ChoicesNum.GetValue())
-        data.append(self.MaxFitness.GetValue())
+        data.append(self.ProjectsNum.GetValue())   #data[0]
+        data.append(self.GroupsNum.GetValue())     #data[1]
+        data.append(self.InitialPop.GetValue())
+        data.append(self.MaxFitness.GetValue())    
+        data.append(self.numOfCrossedallels.GetValue())
         data.append(self.MaxGeneration.GetValue())
+        data.append(self.MutationProb.GetValue())        
+        data.append(self.MutationNum.GetValue())     #data[7]
        # data.append(self.FileName.GetValue())
 
 
@@ -176,6 +218,7 @@ class MyForm(wx.Panel):
         print('onOK handler')
         data = self.getData()
         self.GetParent().Close()
+        print(data, "\n")
 
 
 
@@ -194,14 +237,19 @@ if __name__ == '__main__':
 
 # Creates a list containing 36 lists, each of 3 items, all set to 0
 p = data[0]
-r, c = data[1], data[2]  # r:row, c:column
-size = data[4];
+r, c = data[1], 4  # r:row, c:column
+size = data[3];
 Matrix = [[0 for x in range(r)] for y in range(c)]
 List = [[0 for x in range(r)] for y in range(c)]
 Chromosome = []
 Population = [Chromosome]
 ChoiceMatrix: []
 fitness = 0;
+numOfCrossedallels= data[4];
+probability = data[6];
+numOfMutations = data[7];
+
+print (" P  {p}  \n groups {r},{data[1]} \n  Number of Mutations {numOfMutations},{data[7]}  \n  numOfCrossedallels  {numOfCrossedallels}, {data[4]} ")
 
 
 def read_selections() -> Matrix:
@@ -361,17 +409,11 @@ def run_evolution(choiceMatrix: List, fitness_limit: int, generation_limit: int)
 
 # selection_pair(generate_population(size), convert_to_list(Matrix))
 
-population, i = run_evolution(convert_to_list(Matrix), data[3], data[4])
+population, i = run_evolution(convert_to_list(Matrix), data[2], data[5])
 
 print("Population is", population, "Times ", i)
 print("Data", data , "\n")
 maxFitness = fitness(population[0], convert_to_list(Matrix))
 print(f"max = {maxFitness}  out of {data[3]}")
 print(population[0])
-
-
-
-
-
-
 
