@@ -1,5 +1,5 @@
 
-  <h1>Graduation Projects Distribution with GeneticAlgorithm</h1>
+  <h1>Graduation Projects Distribution with Genetic Algorithm</h1>
   <h2>Goal</h2>
   <p>This programming project can be viewed as an application of searching search algorithm in real-world problems.</p>
   <h2>Specifications</h2>
