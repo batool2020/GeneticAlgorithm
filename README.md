@@ -7,7 +7,7 @@
   <p>Therefore, the aim of this project is to use Genetic algorithm to optimize the distribution of the graduation projects topics based on the student’s selection order. The input for this project is as follows:</p>
   <ul>
     <li>File (Student’s selection) contains the student’s selection. The file contains the students’ names, and selection order where the first choice is the most preferable. The number indicates the project number (see the second file).</li>
-    <li>File ( التخرج ع مشاري أفكار ) contains projects topics, where the first column indicates project number used in the first file.</li>
+    <li>File ( Project Ideas ) contains projects topics, where the first column indicates project number used in the first file.</li>
   </ul>
   <h3>The generated optimized solutions must consider the following:</h3>
   <ul>
