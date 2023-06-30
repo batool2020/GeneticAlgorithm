@@ -15,3 +15,9 @@
     <li>The topic can be assigned to one group only.</li>
     <li>The assignment must be closer as much as possible to the order of selection.</li>
   </ul>
+
+<div style="display: flex;">
+  <img src="screenshots/config.PNG" alt="Login" width="200" style="margin-right: 10px;">
+  <img src="screenshots/res.PNG" alt="MAP" width="200" style="margin-right: 10px;">
+  <img src="screenshots/groups.PNG" alt="DESC" width="200" style="margin-right: 10px;">
+</div>
